@@ -70,14 +70,10 @@ void Program::print(const std::string &name) {
     buffer.reserve(s.size());
     for (std::string::size_type i = 0; i < s.size();) {
         if (cd::isPause(s, i)) {
-            std::cout << buffer;
-            buffer.clear();
-            std::cout.flush();
+            flush(buffer);
             pause();
         } else if (cd::testCmpFunc(s, i)) {
-            std::cout << buffer;
-            buffer.clear();
-            std::cout.flush();
+            flush(buffer);
             std::string name = cd::readFunc(s, i);
             callFunc(name);
         } else {
@@ -85,8 +81,7 @@ void Program::print(const std::string &name) {
             i++;
         }
     }
-    std::cout << buffer;
-    std::cout.flush();
+    flush(buffer);
 }
 
 std::vector<int> Program::adv(std::vector<int> &v) {
@@ -164,4 +159,10 @@ void Program::callFunc(const std::string &name) {
     } else {
         std::cerr << "WARNING: No such native function named \"" << name << "\"" << '\n';
     }
+}
+
+void Program::flush(const std::string &buffer) {
+    std::cout << buffer;
+    buffer.clear();
+    std::cout.flush();
 }
