@@ -23,7 +23,7 @@ You can't simply write out the triangle to @14infinity@00!#.#.#.#
 Notice the first @01two@00 coefficents in each row.#
 See how the first is @01constant@00, and the other is @01equal@00 to @24n@00?#
 Look at the @01degrees@00...#
-The first two are @01equivilent@00 to @01xⁿ + xⁿ-¹h@00...#
+The first two are @01equivilent@00 to @01xⁿ + xⁿ¯¹h@00...#
 
 Thus, we can expand @27(@21x@27 + @22h@27)@24ⁿ@00 as:
 

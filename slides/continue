@@ -3,16 +3,16 @@ Now we can complete step 3 by expanding the binomial @21(x + h)ⁿ@27:#
 @273.
 f'(x) =  @03@02lim@08@07  ( @21(x + h)ⁿ@27 - xⁿ ) / h
          @03@02h->0@08@07#
-f'(x) =  @03@02lim@08@07  ( @21xⁿ + nxⁿ-¹h + h²E@27 - xⁿ ) / h
+f'(x) =  @03@02lim@08@07  ( @21xⁿ + nxⁿ¯¹h + h²E@27 - xⁿ ) / h
          @03@02h->0@08@07#
 @00
 We can cancel out @21xⁿ@27 (xⁿ - xⁿ)@00#
 
 @274.
 
-f'(x) =  @03@02lim@08@07  ( @21xⁿ@27 + nxⁿ-¹h + h²E @21- xⁿ@27 ) / h
+f'(x) =  @03@02lim@08@07  ( @21xⁿ@27 + nxⁿ¯¹h + h²E @21- xⁿ@27 ) / h
          @03@02h->0@08@07#
-f'(x) =  @03@02lim@08@07  ( nxⁿ-¹h + h²E ) / h
+f'(x) =  @03@02lim@08@07  ( nxⁿ¯¹h + h²E ) / h
          @03@02h->0@08@07#
 @00
 Now, to finally remove that pesky h in the denominator,
@@ -20,11 +20,11 @@ we factor out @21h@00 from the numerator and cancel out h.#
 
 @274.
 
-f'(x) =  @03@02lim@08@07  ( nxⁿ-¹@21h@27 + @21h²@27E ) / h
+f'(x) =  @03@02lim@08@07  ( nxⁿ¯¹@21h@27 + @21h²@27E ) / h
          @03@02h->0@08@07#
-f'(x) =  @03@02lim@08@07  @21h@27( nxⁿ-¹ + hE ) / @22h@27
+f'(x) =  @03@02lim@08@07  @21h@27( nxⁿ¯¹ + hE ) / @22h@27
          @03@02h->0@08@07#
-f'(x) =  @03@02lim@08@07  nxⁿ-¹ + hE
+f'(x) =  @03@02lim@08@07  nxⁿ¯¹ + hE
          @03@02h->0@08@07#
 @00
 At this point, we can safely use direct substitution to solve the limit,
@@ -32,14 +32,14 @@ setting @21h@00 to zero:#
 
 @275.
 
-f'(x) = nxⁿ-¹ + @21h@27E#
-f'(x) = nxⁿ-¹ + @210@27 * E#
-f'(x) = nxⁿ-¹#
+f'(x) = nxⁿ¯¹ + @21h@27E#
+f'(x) = nxⁿ¯¹ + @210@27 * E#
+f'(x) = nxⁿ¯¹#
 
 @00
 @05@47@10@01QED! That's the proof!@00
 
-@27d/dx xⁿ = @22nxⁿ-¹@00
+@27d/dx xⁿ = @22nxⁿ¯¹@00
 
 Congradulations, you now know the power rule proof!
 @[fortune]
