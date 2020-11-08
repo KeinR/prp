@@ -130,6 +130,10 @@ void Program::run() {
     pause();
 
     print("continue");
+
+    pause();
+
+    print("review");
 }
 
 std::string Program::process(const std::string &source) {

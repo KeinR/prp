@@ -36,5 +36,5 @@ we can factor those out and write the equation as:
 @27(@21x@27 + @22h@27)@24ⁿ@27 = @21x@24ⁿ@27 + @24n@21x@24ⁿ@27-¹@22h@27 + @22h@27²@25E@00#
 
 Which gives us some extra useful information that will come in handy.
-Don't worry - we will be able to eliminate the rest of the expansion.
-(hint: it has to do with our factoring out @22h@27²!)
+Don't worry - we will be able to eliminate @25E@00.
+(hint: it has to do with our factoring out @22h@00²!)
