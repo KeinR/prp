@@ -20,7 +20,7 @@ class Program {
     void print(const std::string &name);
     std::string process(const std::string &source);
     void callFunc(const std::string &name);
-    void flush(const std::string &buffer);
+    void flush(std::string &buffer);
 public:
     Program(const std::string &execPath);
     void run();

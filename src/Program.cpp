@@ -113,11 +113,19 @@ void Program::run() {
 
     pause();
 
+    print("BuTwHYtHo");
+
+    pause();
+
     print("prep");
 
     pause();
 
     print("beginwork");
+
+    pause();
+
+    print("solution");
 
     pause();
 
@@ -161,7 +169,7 @@ void Program::callFunc(const std::string &name) {
     }
 }
 
-void Program::flush(const std::string &buffer) {
+void Program::flush(std::string &buffer) {
     std::cout << buffer;
     buffer.clear();
     std::cout.flush();
