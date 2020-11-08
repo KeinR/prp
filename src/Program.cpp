@@ -27,8 +27,6 @@ Program::Program(const std::string &execPath) {
             int length = file.tellg();
             file.seekg(0, file.beg);
 
-            std::cout << "filename = " << e.path().filename() << '\n';
-
             std::vector<char> buffer(length);
             file.read(buffer.data(), buffer.size());
 
@@ -102,6 +100,14 @@ void Program::run() {
     pause();
 
     print("overview");
+
+    pause();
+
+    print("beginwork");
+
+    pause();
+
+    print("continue");
 }
 
 /*

@@ -1,0 +1,92 @@
+
+
+We start with the limit definition of a derivative and our function,
+which we will call f(x):
+
+So, we have our goal:
+
+d/dx xⁿ = nxⁿ-¹
+
+Our function:
+
+f(x) = xⁿ
+
+And the limit definition of that function's derivative:
+
+f'(x) =  lim  ( f(x + h) - f(x) ) / h
+         h->0
+
+^ This will be our first step.
+
+------------------------------------------------------------
+
+We begin with the limit definition of a derivative:
+
+1.
+f'(x) =  lim  ( f(x + h) - f(x) ) / h
+         h->0
+
+... and then substitute f(x) for it's definition, xⁿ.
+
+2.
+f'(x) =  lim  ( (x + h)ⁿ - xⁿ ) / h
+         h->0
+
+Uh oh.
+Oh nononononononononononononono -
+How do we solve this?
+What does (x + h)ⁿ equal?
+(x + h)¹ = x + h,
+(x + h)² = x² + 2xh + h²,
+(x + h)³ = x³ + 3x²h + 3xh² + h³,
+(x + h)⁴ = x⁴ + 4x³h² + 6x²h² + 4xh³ + h⁴ ... ???
+@[expand]
+
+Is there a pattern here?
+Wait, throwback to Math 3... That tiangle...
+There is a pattern!
+Potolomy's triangle!
+It shows a pattern in binomial expansion!
+
+For all n > 0 in (x + h)ⁿ, there will be n+1 x*h pairs,
+with the x's being taken to the n power decreasing by 1 down the expansion,
+and h's being taken to the 0 power increasing 1 down the expansion.
+The coefficents are then applied according to potolomy's triangle, going down the expansion...
+
+I know that this may be a little hard to visualize, so here's a table:
+
+__________________________________________________________________________________________
+degree (n) \   coefficents   \            degrees         \         equations            |\
+-----------|-----------------|----------------------------|-------------------------------|
+    1      |      1 1        |            x + h           |             x + h             |
+    2      |     1 2 1       |         x² + xh + h²       |         x² + 2xh + h²         |
+    3      |    1 3 3 1      |     x³ + x²h + xh² + h³    |     x³ + 3x²h + 3xh² + h³     |
+    4      |   1 4 6 4 1     | x⁴ + x³h + x²h² + xh³ + h⁴ | x⁴ + 4x³h + 6x²h² + 4xh³ + h⁴ |
+`````````````````````````````````````````````````````````````````````````````````````````````
+             ^ (potolomy's triangle)
+
+Right, so...
+Wait, how do we repesent this?
+You can't simply write out the triangle to infinity!...
+...unless you can...!
+
+Notice the first two coefficents in each row.
+See how the first is constant, and the other is equal to n?
+Look at the degrees...
+The first two are equivilent to xⁿ + xⁿ-¹h...
+
+Thus, we can expand (x + h)ⁿ as:
+
+(x + h)ⁿ = xⁿ + nxⁿ-¹h + E
+
+Where E stands in place of the rest of the binomial expansion.
+In addition, since we know that subsequent h's will have a degree ≥ 2,
+we can factor those out and write the equation as:
+
+(x + h)ⁿ = xⁿ + nxⁿ-¹h + h²E
+
+Which gives us some extra useful information that will come in handy.
+Don't worry - we will be able to eliminate the rest of the expansion.
+(hint: it has to do with our factoring out h²!)
+
+

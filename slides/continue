@@ -1,0 +1,35 @@
+Now we can complete step 3 by expanding the binomial:
+
+3.
+f'(x) =  lim  ( xⁿ + nxⁿ-¹h + h²E - xⁿ ) / h
+         h->0
+
+We can cancel out xⁿ (xⁿ - xⁿ)
+
+4.
+
+f'(x) =  lim  ( nxⁿ-¹h + h²E ) / h
+         h->0
+
+Now, to finally remove that pesky h in the denominator,
+we factor out h from the numerator and cancel out h.
+
+4.
+
+f'(x) =  lim  h( nxⁿ-¹ + hE ) / h
+         h->0
+
+f'(x) =  lim  nxⁿ-¹ + hE
+         h->0
+
+At this point, we can safely use direct substitution to solve the limit,
+setting h to zero:
+
+5.
+
+f'(x) = nxⁿ-¹
+
+QED! That's the proof!
+
+d/dx xⁿ = nxⁿ-¹
+
