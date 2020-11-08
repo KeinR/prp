@@ -1,0 +1,10 @@
+writing:
+- linting
+- formatting
+- ASCII art
+- gif to ASCII animation??? Like, to celebrate at the end... Or just image to ASCII art... Look for lib?
+- Some how determine the console size (ncurses?)
+- port to repl.it
+
+code:
+- native function calls

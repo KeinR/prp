@@ -1,92 +1,72 @@
-
-
-We start with the limit definition of a derivative and our function,
-which we will call f(x):
-
-So, we have our goal:
-
-d/dx xⁿ = nxⁿ-¹
-
-Our function:
-
-f(x) = xⁿ
-
-And the limit definition of that function's derivative:
-
-f'(x) =  lim  ( f(x + h) - f(x) ) / h
-         h->0
-
-^ This will be our first step.
-
-------------------------------------------------------------
-
-We begin with the limit definition of a derivative:
-
+We begin with the @03limit@00 definition of a derivative:#
+@27
 1.
-f'(x) =  lim  ( f(x + h) - f(x) ) / h
-         h->0
-
-... and then substitute f(x) for it's definition, xⁿ.
-
+f'(x) =  @03@02lim@08@07  ( f(x + h) - f(x) ) / h
+         @03@02h->0@08@07#
+@00
+... and then substitute @21f(x)@00 for it's definition, @23xⁿ@00.#
+@27
 2.
-f'(x) =  lim  ( (x + h)ⁿ - xⁿ ) / h
-         h->0
-
-Uh oh.
-Oh nononononononononononononono -
-How do we solve this?
-What does (x + h)ⁿ equal?
-(x + h)¹ = x + h,
-(x + h)² = x² + 2xh + h²,
-(x + h)³ = x³ + 3x²h + 3xh² + h³,
-(x + h)⁴ = x⁴ + 4x³h² + 6x²h² + 4xh³ + h⁴ ... ???
+f'(x) =  @03@02lim@08@07  ( @21f(x + h)@27 - @23f(x)@27 ) / h
+         @03@02h->0@08@07#
+f'(x) =  @03@02lim@08@07  ( @21(x + h)ⁿ@27 - @23xⁿ@27 ) / h
+         @03@02h->0@08@07#
+@00
+Uh oh.#
+@03Oh nononononononononononononono -@00#
+How do we solve this?#
+What does @25(x + h)@24ⁿ@00 @03equal?@00#
+@25(x + h)@24¹@00 = x + h,#
+@25(x + h)@24²@00 = x² + 2xh + h²,#
+@25(x + h)@24³@00 = x³ + 3x²h + 3xh² + h³,#
+@25(x + h)@24⁴@00 = x⁴ + 4x³h² + 6x²h² + 4xh³ + h⁴# ... #@21?#?#?@00#
 @[expand]
 
-Is there a pattern here?
-Wait, throwback to Math 3... That tiangle...
-There is a pattern!
-Potolomy's triangle!
-It shows a pattern in binomial expansion!
+Is there a pattern here?#
+Wait,# throwback to Math 3.#.#.# That tiangle.#.#.#
+There @03is@00 a pattern!#
+@01@04Potolomy's triangle!@00#
+It shows a pattern in binomial expansion!#
 
-For all n > 0 in (x + h)ⁿ, there will be n+1 x*h pairs,
-with the x's being taken to the n power decreasing by 1 down the expansion,
-and h's being taken to the 0 power increasing 1 down the expansion.
-The coefficents are then applied according to potolomy's triangle, going down the expansion...
+For all @24n@00 > 0 in (@21x@00 + @22h@00)@24ⁿ@00, there will be @24n@00+1 @21x@00*@22h@00 pairs,
+with the @21x@00's being taken to the @24n@00 power @03@01decreasing@00 by 1 down the expansion,
+and @22h@00's being taken to the 0 power @03@01increasing@00 by 1 down the expansion.
+The coefficents are then applied according to potolomy's triangle, going down the expansion...#
 
 I know that this may be a little hard to visualize, so here's a table:
 
 __________________________________________________________________________________________
-degree (n) \   coefficents   \            degrees         \         equations            |\
+degree (@24n@00) \   coefficents   \            degrees         \         equations            |\
 -----------|-----------------|----------------------------|-------------------------------|
     1      |      1 1        |            x + h           |             x + h             |
     2      |     1 2 1       |         x² + xh + h²       |         x² + 2xh + h²         |
     3      |    1 3 3 1      |     x³ + x²h + xh² + h³    |     x³ + 3x²h + 3xh² + h³     |
     4      |   1 4 6 4 1     | x⁴ + x³h + x²h² + xh³ + h⁴ | x⁴ + 4x³h + 6x²h² + 4xh³ + h⁴ |
 `````````````````````````````````````````````````````````````````````````````````````````````
-             ^ (potolomy's triangle)
+             ^ @03(potolomy's triangle)@00#
 
-Right, so...
-Wait, how do we repesent this?
-You can't simply write out the triangle to infinity!...
-...unless you can...!
+Right, so...#
+Wait, how do we repesent this?#
+You can't simply write out the triangle to @14infinity@00!#.#.#.#
+...unless you @01can@00...!#
 
-Notice the first two coefficents in each row.
-See how the first is constant, and the other is equal to n?
-Look at the degrees...
-The first two are equivilent to xⁿ + xⁿ-¹h...
+Notice the first @01two@00 coefficents in each row.#
+See how the first is @01constant@00, and the other is @01equal@00 to @24n@00?#
+Look at the @01degrees@00...#
+The first two are @01equivilent@00 to @01xⁿ + xⁿ-¹h@00...#
 
-Thus, we can expand (x + h)ⁿ as:
+Thus, we can expand @27(@21x@27 + @22h@27)@24ⁿ@00 as:
 
-(x + h)ⁿ = xⁿ + nxⁿ-¹h + E
+@27(@21x@27 + @22h@27)@24ⁿ@27 = @21x@24ⁿ@27 + @24n@21x@24ⁿ@27-¹@22h@27 + @25E@00#
 
-Where E stands in place of the rest of the binomial expansion.
-In addition, since we know that subsequent h's will have a degree ≥ 2,
+Where @25E@00 stands in place of the rest of the binomial expansion.#
+In addition, since we know that subsequent @22h@00's will have a degree ≥ 2,
 we can factor those out and write the equation as:
 
-(x + h)ⁿ = xⁿ + nxⁿ-¹h + h²E
+@27(@21x@27 + @22h@27)@24ⁿ@27 = @21x@24ⁿ@27 + @24n@21x@24ⁿ@27-¹@22h@27 + @22h@27²@25E@00#
 
 Which gives us some extra useful information that will come in handy.
 Don't worry - we will be able to eliminate the rest of the expansion.
-(hint: it has to do with our factoring out h²!)
+(hint: it has to do with our factoring out @22h@27²!)
 
 

@@ -2,10 +2,10 @@
 |                                                                                                              \
 |                                         Today, we are going to prove:                                        |
 |                                           d/dx xⁿ      =      nxⁿ-¹                                          |
-|                                   Using the limit definition of a derivative.                                |
+|                                   Using the @03limit@00 definition of a derivative.                                |
 |                                                                                                              |
 |                              We'll be using the more common definition, that is:                             |
 |                                                                                                              |
-|                                 d/dx f(x) =  lim  ( f(x + h) - f(x) ) / h                                    |
-|                                              h->0                                                            |
+|                                 d/dx f(x) =  @03@02lim@08@07  ( f(x + h) - f(x) ) / h                                    |
+|                                              @03@02h->0@08@07                                                            |
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>/

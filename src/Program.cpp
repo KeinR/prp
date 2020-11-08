@@ -103,6 +103,10 @@ void Program::run() {
 
     pause();
 
+    print("prep");
+
+    pause();
+
     print("beginwork");
 
     pause();
@@ -151,6 +155,7 @@ std::string Program::process(const std::string &source) {
     result.reserve(source.size() * 1.2);
 
     for (size i = 0; i < source.size();) {
+        bool skip = false;
         switch (source[i]) {
             case cd::SC_START:
                 if (i + 2 < source.size()) {
@@ -158,6 +163,7 @@ std::string Program::process(const std::string &source) {
                     if (mapping.size() > 0) {
                         i += 3;
                         result += mapping;
+                        skip = true;
                         continue;
                     }
                 }
@@ -165,6 +171,7 @@ std::string Program::process(const std::string &source) {
             case cd::PAUSE_CHR:
                 result.push_back(cd::PAUSE);
                 i++;
+                skip = true;
                 break;
             case cd::ESCAPE:
                 if (i + 1 < source.size()) {
@@ -189,10 +196,11 @@ std::string Program::process(const std::string &source) {
                 break;
             case '\r': // God forsaken carriage returns, go to ****!
                 i++;
+                skip = true;
                 break;
         }
 
-        if (i < source.size()) {
+        if (!skip && i < source.size()) {
             result.push_back(source[i]);
             i++;
         }

@@ -1,0 +1,17 @@
+We start with the @03limit@00 definition of a derivative and our function,
+which we will call @24f@00(x).#
+
+So, we have our goal:#
+
+@27d/dx @21xⁿ@27 = nxⁿ-¹@00#
+
+Our function:#
+
+@24f@27(x) = @21xⁿ@00#
+
+And the @03limit@00 definition of that function's derivative:#
+
+@24f@26'@27(x) =  @03@02lim@08@07  ( @24f@27(x + @25h@27) - @24f@27(x) ) / @25h@27
+         @25@03@02h@27->0@08@07
+@00
+@03^ This will be our first step.@00
