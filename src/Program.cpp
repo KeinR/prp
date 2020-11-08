@@ -20,7 +20,7 @@ Program::Program(const std::string &execPath) {
         for (fs::directory_entry e : fs::directory_iterator(slidesDir)) {
             std::ifstream file(e.path());
             if (!file.good()) {
-                std::cout << "WARNING: Failed to open " << e.path() << '\n';
+                std::cerr << "WARNING: Failed to open " << e.path() << '\n';
             }
 
             file.seekg(0, file.end);
@@ -31,7 +31,7 @@ Program::Program(const std::string &execPath) {
             file.read(buffer.data(), buffer.size());
 
             if (!file.good()) {
-                std::cout << "WARNING: Failed while reading from " << e.path() << '\n';
+                std::cerr << "WARNING: Failed while reading from " << e.path() << '\n';
             }
             file.close();
 
@@ -40,6 +40,14 @@ Program::Program(const std::string &execPath) {
     } catch (fs::filesystem_error &e) {
         throw std::runtime_error("Cannot load slides from directory [" + slidesDir + "]");
     }
+
+    funcs["expand"] = []()->void{
+        std::cout << "[expansion successful]";
+    };
+
+    funcs["fortune"] = []()->void{
+        system("fortune");
+    };
 }
 
 void Program::pause() {
@@ -60,14 +68,21 @@ void Program::print(const std::string &name) {
     std::string &s = getSlide(name);
     std::string buffer;
     buffer.reserve(s.size());
-    for (char c : s) {
-        if (c == cd::PAUSE) {
+    for (std::string::size_type i = 0; i < s.size();) {
+        if (cd::isPause(s, i)) {
             std::cout << buffer;
             buffer.clear();
             std::cout.flush();
             pause();
+        } else if (cd::testCmpFunc(s, i)) {
+            std::cout << buffer;
+            buffer.clear();
+            std::cout.flush();
+            std::string name = cd::readFunc(s, i);
+            callFunc(name);
         } else {
-            buffer.push_back(c);
+            buffer.push_back(s[i]);
+            i++;
         }
     }
     std::cout << buffer;
@@ -114,40 +129,6 @@ void Program::run() {
     print("continue");
 }
 
-/*
-* syntax:
-* [group][val]
-* (nowin = not supported by windows terminal)
-* 0 - Basic
-*   0 - RESET ALL attributes
-*   1 - bold
-*   2 - faint (nowin)
-*   3 - italics (nowin)
-*   4 - underline
-*   5 - double underline (nowin)
-*   6 - strikethrough (nowin)
-*   7 - RESET color and intensity (bold/faint)
-*   8 - DISABLE italics
-*   9 - DISABLE underline
-*   a - DISABLE crossout
-* [
-* 1 - Foreground
-* 2 - Bright foreground
-* 3 - Background
-* 4 - Bright background
-* ]
-*   0 - Black
-*   1 - Red
-*   2 - Green
-*   3 - Yellow
-*   4 - Blue
-*   5 - Magenta
-*   6 - Cyan
-*   7 - White
-*
-* Returns empty string on fail
-*/
-
 std::string Program::process(const std::string &source) {
     typedef std::string::size_type size;
 
@@ -155,52 +136,17 @@ std::string Program::process(const std::string &source) {
     result.reserve(source.size() * 1.2);
 
     for (size i = 0; i < source.size();) {
-        bool skip = false;
-        switch (source[i]) {
-            case cd::SC_START:
-                if (i + 2 < source.size()) {
-                    std::string mapping = mapShortcode(source[i + 1], source[i + 2]);
-                    if (mapping.size() > 0) {
-                        i += 3;
-                        result += mapping;
-                        skip = true;
-                        continue;
-                    }
-                }
-                break;
-            case cd::PAUSE_CHR:
-                result.push_back(cd::PAUSE);
-                i++;
-                skip = true;
-                break;
-            case cd::ESCAPE:
-                if (i + 1 < source.size()) {
-                    switch (source[i + 1]) {
-                        case cd::SC_START: // Fallthrough
-                        case cd::PAUSE_CHR: // Fallthrough
-                        case cd::ESCAPE:
-                            i++;
-                            // Will go straight to append
-                            break;
-                        // How about NO
-                        // case '\r': // Fallthrough
-                        //     if (i + 2 >= source.size() || source[i + 2] != '\n') {
-                        //         break;
-                        //     }
-                        //     i++;
-                        // case '\n':
-                        //     i += 2;
-                        //     break;
-                    }
-                }
-                break;
-            case '\r': // God forsaken carriage returns, go to ****!
-                i++;
-                skip = true;
-                break;
-        }
 
-        if (!skip && i < source.size()) {
+        if (cd::testEscape(source, i)) {
+            cd::passEscape(source, i);
+            result.push_back(source[i]);
+        } else if (cd::testPause(source, i)) {
+            result += cd::compilePause(source, i);
+        } else if (cd::testFunc(source, i)) {
+            result += cd::compileFunc(source, i);
+        } else if (cd::testShortcode(source, i)) {
+            result += cd::compileShortcode(source, i);
+        } else {
             result.push_back(source[i]);
             i++;
         }
@@ -211,74 +157,11 @@ std::string Program::process(const std::string &source) {
     return result;
 }
 
-std::string Program::mapShortcode(char g, char v) {
-    std::string code;
-    switch (g) {
-        case '0':
-            switch (v) {
-                case '0':
-                    code = "0";
-                    break;
-                case '1':
-                    code = "1";
-                    break;
-                case '2':
-                    code = "2";
-                    break;
-                case '3':
-                    code = "3";
-                    break;
-                case '4':
-                    code = "4";
-                    break;
-                case '5':
-                    code = "21";
-                    break;
-                case '6':
-                    code = "9";
-                    break;
-                case '7':
-                    code = "22";
-                    break;
-                case '8':
-                    code = "23";
-                    break;
-                case '9':
-                    code = "24";
-                    break;
-                case 'a':
-                    code = "25";
-                    break;
-            }
-            break;
-        default:
-            if (v >= '0' && v <= '7') {
-                switch (g) {
-                    case '1':
-                        code = "30";
-                        break;
-                    case '2':
-                        code = "90";
-                        break;
-                    case '3':
-                        code = "40";
-                        break;
-                    case '4':
-                        code = "100";
-                        break;
-                }
-                if (code.size()) {
-                    code.back() = v;
-                }
-            }
-            break;
+void Program::callFunc(const std::string &name) {
+    funcs_t::iterator it = funcs.find(name);
+    if (it != funcs.end()) {
+        it->second();
+    } else {
+        std::cerr << "WARNING: No such native function named \"" << name << "\"" << '\n';
     }
-    std::string result;
-    if (code.size() > 0) {
-        result += "\e[";
-        result += code;
-        result += "m";
-        return result;
-    }
-    return result;
 }

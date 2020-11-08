@@ -1,6 +1,40 @@
 #include "codec.h"
 
+#include <iostream>
 
+/*
+* Shortcode syntax:
+* [group][val]
+* (nowin = not supported by windows terminal)
+* 0 - Basic
+*   0 - RESET ALL attributes
+*   1 - bold
+*   2 - faint (nowin)
+*   3 - italics (nowin)
+*   4 - underline
+*   5 - double underline (nowin)
+*   6 - strikethrough (nowin)
+*   7 - RESET color and intensity (bold/faint)
+*   8 - DISABLE italics
+*   9 - DISABLE underline
+*   a - DISABLE crossout
+* [
+* 1 - Foreground
+* 2 - Bright foreground
+* 3 - Background
+* 4 - Bright background
+* ]
+*   0 - Black
+*   1 - Red
+*   2 - Green
+*   3 - Yellow
+*   4 - Blue
+*   5 - Magenta
+*   6 - Cyan
+*   7 - White
+*
+* Returns empty string on fail
+*/
 static constexpr char SC_START = '@';
 
 static constexpr char FUNC_FLAG = '@';
@@ -41,10 +75,10 @@ bool cd::isPause(const std::string &in, std::string::size_type &i) {
 
 bool cd::testFunc(const std::string &in, std::string::size_type i) {
     return in[i] == FUNC_FLAG &&
-        i + 2 < source.size() &&
-        source[i + 1] == FUNC_OPEN &&
+        i + 2 < in.size() &&
+        in[i + 1] == FUNC_OPEN &&
         // No no-name calls
-        source[i + 2] != FUNC_CLOSE;
+        in[i + 2] != FUNC_CLOSE;
 }
 bool cd::testCmpFunc(const std::string &in, std::string::size_type i) {
     return in[i] == FUNC_BC;
@@ -65,9 +99,9 @@ std::string cd::compileFunc(const std::string &in, std::string::size_type &i) {
     i = mi + 1;
     return result;
 }
-std::string readFunc(const std::string &in, std::string::size_type &i) {
+std::string cd::readFunc(const std::string &in, std::string::size_type &i) {
     // unlikely to fail
-    std::string::size_type mi = i + 2;
+    std::string::size_type mi = i + 1;
     std::string result;
     for (;; mi++) {
         if (mi >= in.size()) {
@@ -83,10 +117,10 @@ std::string readFunc(const std::string &in, std::string::size_type &i) {
 }
 
 bool cd::testShortcode(const std::string &in, std::string::size_type i) {
-    return in[i] == SC_START && i + 2 < source.size();
+    return in[i] == SC_START && i + 2 < in.size() && in[i+1] != FUNC_OPEN;
 }
 std::string cd::compileShortcode(const std::string &in, std::string::size_type &i) {
-    std::string mapping = mapShortcode(source[i + 1], source[i + 2]);
+    std::string mapping = mapShortcode(in[i + 1], in[i + 2]);
     if (mapping.size() > 0) {
         // Was successful
         i += 3;
