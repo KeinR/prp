@@ -3,15 +3,22 @@
 
 #include <vector>
 #include <string>
+#include <map>
 
 class Program {
+    typedef std::map<std::string, std::string> slides_t;
+
+    slides_t slides;
+
     std::vector<int> adv(std::vector<int> &v);
     std::vector<int> getExpansion(int count);
+    std::string &getSlide(const std::string &name);
     void pause();
-    void print(const std::string &str);
-    void printLines(const std::string &str);
+    void print(const std::string &name);
+    std::string process(const std::string &source);
+    std::string mapShortcode(char g, char v);
 public:
-    Program();
+    Program(const std::string &execPath);
     void run();
 };
 

@@ -55,3 +55,16 @@ void ut::clear() {
 
     #endif
 }
+
+std::string ut::dirname(const std::string &path) {
+    std::string result = path;
+    for (std::string::size_type i = result.size()-1; i < result.size(); i--) {
+        if (result[i] == '/') {
+            if (i+1 < result.size()) {
+                result.erase(i+1);
+            }
+            break;
+        }
+    }
+    return result;
+}
