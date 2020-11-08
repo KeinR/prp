@@ -52,8 +52,33 @@ Program::Program(const std::string &execPath) {
         printExp(500);
     };
 
-    funcs["fortune"] = []()->void{
-        system("fortune");
+    funcs["fortune"] = [this]()->void{
+        std::cout << process(R"(
+Would you like to have a fortune (from fortune.exe) to celebrate your victory?
+@03@02(DISCLAIMER: The author[s] are not responsible for the output of fortune.exe)@00
+)") << '\n';
+        bool loop = true;
+        bool consent = false;
+        while (loop) {
+            std::cout << "[y/n]";
+            char c = ut::getChar(true);
+            switch (c) {
+                case 'y':
+                case 'Y':
+                    consent = true;
+                    loop = false;
+                    break;
+                case 'n':
+                case 'N':
+                    loop = false;
+                    break;
+            }
+        }
+        if (consent) {
+            std::cout << "Here you go:\n\n\e[1m" << std::flush;
+            system("fortune");
+            std::cout << "\e[0m" << '\n';
+        }
     };
 }
 
