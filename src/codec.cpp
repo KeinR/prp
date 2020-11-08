@@ -1,6 +1,7 @@
 #include "codec.h"
 
 #include <iostream>
+#include <cassert>
 
 /*
 * Shortcode syntax:
@@ -126,6 +127,35 @@ std::string cd::compileShortcode(const std::string &in, std::string::size_type &
         i += 3;
     }
     return mapping;
+}
+
+std::string cd::mapDegree(int v) {
+    std::string result;
+    if (v < 0) {
+        result.append("¯");
+    }
+
+    do {
+        int digit = v % 10;
+        v /= 10;
+        const char *s = nullptr;
+        switch (digit) {
+            case 0: s = "⁰"; break;
+            case 1: s = "¹"; break;
+            case 2: s = "²"; break;
+            case 3: s = "³"; break;
+            case 4: s = "⁴"; break;
+            case 5: s = "⁵"; break;
+            case 6: s = "⁶"; break;
+            case 7: s = "⁷"; break;
+            case 8: s = "⁸"; break;
+            case 9: s = "⁹"; break;
+            default: assert(false); break; // Should never happen
+        }
+        result.insert(0, s);
+    } while (v != 0);
+
+    return result;
 }
 
 std::string mapShortcode(char g, char v) {

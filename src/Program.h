@@ -15,12 +15,14 @@ class Program {
 
     std::vector<int> adv(std::vector<int> &v);
     std::vector<int> getExpansion(int count);
+    std::string getExpansionStr(int count);
     std::string &getSlide(const std::string &name);
     void pause();
     void print(const std::string &name);
     std::string process(const std::string &source);
     void callFunc(const std::string &name);
     void flush(std::string &buffer);
+    void printExp(int d);
 public:
     Program(const std::string &execPath);
     void run();

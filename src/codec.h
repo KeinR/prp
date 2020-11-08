@@ -18,6 +18,8 @@ namespace cd {
 
     bool testShortcode(const std::string &in, std::string::size_type i);
     std::string compileShortcode(const std::string &in, std::string::size_type &i);
+
+    std::string mapDegree(int v);
 }
 
 #endif

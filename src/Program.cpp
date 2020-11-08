@@ -41,8 +41,15 @@ Program::Program(const std::string &execPath) {
         throw std::runtime_error("Cannot load slides from directory [" + slidesDir + "]");
     }
 
-    funcs["expand"] = []()->void{
-        std::cout << "[expansion successful]";
+    funcs["expand"] = [this]()->void{
+        printExp(8);
+        printExp(20);
+        printExp(50);
+        printExp(100);
+    };
+
+    funcs["expandMore"] = [this]()->void{
+        printExp(500);
     };
 
     funcs["fortune"] = []()->void{
@@ -102,6 +109,33 @@ std::vector<int> Program::getExpansion(int count) {
         result = adv(result);
     }
     return result;
+}
+
+std::string Program::getExpansionStr(int count) {
+    std::stringstream result;
+    std::vector<int> qt = getExpansion(count);
+    for (int i = 0; i <= count; i++) {
+        if (qt[i] != 1) {
+            result << qt[i];
+        }
+        if (i != count) {
+            result << 'x';
+            if (i != count - 1) {
+                result << cd::mapDegree(count - i);
+            }
+        }
+        if (i != 0) {
+            result << 'b';
+            if (i != 1) {
+                result << cd::mapDegree(i);
+            }
+        }
+        if (i != count) {
+            result << " + ";
+        }
+    }
+    result.flush();
+    return result.str();
 }
 
 void Program::run() {
@@ -177,4 +211,8 @@ void Program::flush(std::string &buffer) {
     std::cout << buffer;
     buffer.clear();
     std::cout.flush();
+}
+
+void Program::printExp(int d) {
+    std::cout << process("@25(x + h)@24" + cd::mapDegree(d) + "@00") << " = " << getExpansionStr(d) << ",\n";
 }
