@@ -9,9 +9,9 @@ f'(x) =  @03@02lim@08@07  ( f(x + h) - f(x) ) / h
 Substitute @21f(x)@00 for it's definition, @23xⁿ@00.#
 
 @272.
-f'(x) =  @03@02lim@08@07  ( @21f(x + h)@27 - @23f(x)@27 ) / h
+f'(x) =  @03@02lim@08@07  ( @21f(x + h)@27 - @21f(x)@27 ) / h
          @03@02h->0@08@07#
-f'(x) =  @03@02lim@08@07  ( @21(x + h)ⁿ@27 - @23xⁿ@27 ) / h
+f'(x) =  @03@02lim@08@07  ( @23(x + h)ⁿ@27 - @23xⁿ@27 ) / h
          @03@02h->0@08@07#
 @00
 Expand the binomial @21(x + h)ⁿ@00, using E to represent the rest of the expansion,
@@ -44,7 +44,8 @@ f'(x) =  @03@02lim@08@07  nxⁿ¯¹ + hE
 Use direct substitution to solve the limit.
 
 @275.
-f'(x) = nxⁿ¯¹ + @21h@27E#
+f'(x) = @03@02lim@08@07 nxⁿ¯¹ + @21h@27E
+        @03@02h->0@08@07#
 f'(x) = nxⁿ¯¹ + @210@27 * E#
 f'(x) = nxⁿ¯¹#
 @00
