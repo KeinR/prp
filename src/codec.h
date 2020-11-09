@@ -5,7 +5,7 @@
 
 namespace cd {
     bool testEscape(const std::string &in, std::string::size_type i);
-    void passEscape(const std::string &in, std::string::size_type i);
+    void passEscape(const std::string &in, std::string::size_type &i);
 
     bool testPause(const std::string &in, std::string::size_type i);
     std::string compilePause(const std::string &in, std::string::size_type &i);

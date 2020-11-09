@@ -53,7 +53,7 @@ bool cd::testEscape(const std::string &in, std::string::size_type i) {
     return in[i] == ESCAPE && i + 1 < in.size() &&
         (testFunc(in, i+1) || testPause(in, i+1) || testShortcode(in, i+1));
 }
-void cd::passEscape(const std::string &in, std::string::size_type i) {
+void cd::passEscape(const std::string &in, std::string::size_type &i) {
     i++;
 }
 

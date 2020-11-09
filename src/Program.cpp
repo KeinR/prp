@@ -206,6 +206,7 @@ std::string Program::process(const std::string &source) {
         if (cd::testEscape(source, i)) {
             cd::passEscape(source, i);
             result.push_back(source[i]);
+            i++;
         } else if (cd::testPause(source, i)) {
             result += cd::compilePause(source, i);
         } else if (cd::testFunc(source, i)) {
