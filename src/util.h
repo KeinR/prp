@@ -7,6 +7,7 @@ namespace ut {
     char getChar(bool printChar = true);
     void clear();
     std::string dirname(const std::string &path);
+    std::string toLowercase(const std::string &str);
 }
 
 #endif

@@ -36,24 +36,24 @@ Program::Program(const std::string &execPath) {
             }
             file.close();
 
-            slides[e.path().filename().string()] = process(std::string(buffer.cbegin(), buffer.cend()));
+            slides[ut::toLowercase(e.path().filename().string())] = process(std::string(buffer.cbegin(), buffer.cend()));
         }
     } catch (fs::filesystem_error &e) {
         throw std::runtime_error("Cannot load slides from directory [" + slidesDir + "]");
     }
 
-    funcs["expand"] = [this]()->void{
+    addFunc("expand", [this]()->void{
         printExp(8);
         printExp(20);
         printExp(50);
         printExp(100);
-    };
+    });
 
-    funcs["expandMore"] = [this]()->void{
+    addFunc("expandMore", [this]()->void{
         printExp(500);
-    };
+    });
 
-    funcs["fortune"] = [this]()->void{
+    addFunc("fortune", [this]()->void{
         std::cout << process(R"(
 Would you like to have a fortune (from fortune.exe) to celebrate your victory?
 @03@02(@11DISCLAIMER@00@03@02: The author[s] are not responsible for the output of fortune.exe.
@@ -83,7 +83,7 @@ I'm just being cautious...)@00
             system("fortune");
             std::cout << "\e[0m" << '\n';
         }
-    };
+    });
 }
 
 void Program::pause() {
@@ -91,7 +91,7 @@ void Program::pause() {
 }
 
 std::string &Program::getSlide(const std::string &name) {
-    slides_t::iterator it = slides.find(name);
+    slides_t::iterator it = slides.find(ut::toLowercase(name));
     if (it != slides.end()) {
         return it->second;
     } else {
@@ -223,7 +223,7 @@ std::string Program::process(const std::string &source) {
 }
 
 void Program::callFunc(const std::string &name) {
-    funcs_t::iterator it = funcs.find(name);
+    funcs_t::iterator it = funcs.find(ut::toLowercase(name));
     if (it != funcs.end()) {
         it->second();
     } else {
@@ -239,4 +239,8 @@ void Program::flush(std::string &buffer) {
 
 void Program::printExp(int d) {
     std::cout << process("@25(x + h)@24" + cd::mapDegree(d) + "@00") << " = " << getExpansionStr(d) << ",\n";
+}
+
+void Program::addFunc(const std::string &name, const func_t &f) {
+    funcs[ut::toLowercase(name)] = f;
 }

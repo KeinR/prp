@@ -68,3 +68,15 @@ std::string ut::dirname(const std::string &path) {
     }
     return result;
 }
+
+std::string ut::toLowercase(const std::string &str) {
+    std::string result;
+    result.reserve(str.size());
+    for (char c : str) {
+        if ('A' <= c && c <= 'Z') {
+            c |= 0x20;
+        }
+        result.push_back(c);
+    }
+    return result;
+}
