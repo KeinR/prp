@@ -14,7 +14,7 @@ f'(x) =  @03@02lim@08@07  ( @21f(x + h)@27 - @23f(x)@27 ) / h
 f'(x) =  @03@02lim@08@07  ( @21(x + h)ⁿ@27 - @23xⁿ@27 ) / h
          @03@02h->0@08@07#
 @00
-Expand the binomial @21(x + h)ⁿ@27, using E to represent the rest of the expansion,
+Expand the binomial @21(x + h)ⁿ@00, using E to represent the rest of the expansion,
 and factoring out h² from E:#
 
 @273.

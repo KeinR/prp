@@ -55,7 +55,10 @@ Program::Program(const std::string &execPath) {
     funcs["fortune"] = [this]()->void{
         std::cout << process(R"(
 Would you like to have a fortune (from fortune.exe) to celebrate your victory?
-@03@02(DISCLAIMER: The author[s] are not responsible for the output of fortune.exe)@00
+@03@02(@11DISCLAIMER@00@03@02: The author[s] are not responsible for the output of fortune.exe.
+While the quotes are generally benign, I'm not the author of fortune.exe, so I have no idea what might
+be printed out... some that I've seen could be considered controversial.
+I'm just being cautious...)@00
 )") << '\n';
         bool loop = true;
         bool consent = false;
@@ -212,7 +215,13 @@ std::string Program::process(const std::string &source) {
         } else if (cd::testFunc(source, i)) {
             result += cd::compileFunc(source, i);
         } else if (cd::testShortcode(source, i)) {
-            result += cd::compileShortcode(source, i);
+            std::string r = cd::compileShortcode(source, i);
+            if (r.size() == 0) {
+                result.push_back(source[i]);
+                i++;
+            } else {
+                result += r;
+            }
         } else {
             result.push_back(source[i]);
             i++;

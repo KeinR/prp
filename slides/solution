@@ -12,7 +12,7 @@ degree (@24n@00) \   coefficents   \            degrees         \         equati
     2      |     1 2 1       |         x² + xh + h²       |         x² + 2xh + h²         |
     3      |    1 3 3 1      |     x³ + x²h + xh² + h³    |     x³ + 3x²h + 3xh² + h³     |
     4      |   1 4 6 4 1     | x⁴ + x³h + x²h² + xh³ + h⁴ | x⁴ + 4x³h + 6x²h² + 4xh³ + h⁴ |
-`````````````````````````````````````````````````````````````````````````````````````````````
+```````````````````````````````````````````````````````````````````````````````````````````
              ^ @03(potolomy's triangle)@00#
 
 Right, so...#
@@ -30,11 +30,12 @@ Thus, we can expand @27(@21x@27 + @22h@27)@24ⁿ@00 as:
 @27(@21x@27 + @22h@27)@24ⁿ@27 = @21x@24ⁿ@27 + @24n@21x@24ⁿ@27-¹@22h@27 + @25E@00#
 
 Where @25E@00 stands in place of the rest of the binomial expansion.#
+Pretty clever huh?#
 In addition, since we know that subsequent @22h@00's will have a degree ≥ 2,
 we can factor those out and write the equation as:
 
 @27(@21x@27 + @22h@27)@24ⁿ@27 = @21x@24ⁿ@27 + @24n@21x@24ⁿ@27-¹@22h@27 + @22h@27²@25E@00#
 
-Which gives us some extra useful information that will come in handy.
+Which gives us some extra useful information that will come in handy later.
 Don't worry - we will be able to eliminate @25E@00.
 (hint: it has to do with our factoring out @22h@00²!)
