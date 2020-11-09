@@ -1,7 +1,8 @@
 ### Proof project
 
-Ms. Albright period 1
+Ms. Albrecht, period 1\
 Orion Musselman
 
-This is a program that will walk you through the power rule proof.
-Each slide can be found in slides/*, however the text is obfuscated by formatting.
+This is a program that will walk you through the power rule proof.\
+Each slide can be found in slides/*, however the text is obfuscated by formatting and commands.\
+Advance through a slide by pressing [a key].
