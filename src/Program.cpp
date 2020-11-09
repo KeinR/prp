@@ -5,6 +5,7 @@
 #include <filesystem>
 #include <sstream>
 #include <fstream>
+#include <array>
 
 #include "util.h"
 #include "codec.h"
@@ -167,35 +168,23 @@ std::string Program::getExpansionStr(int count) {
 }
 
 void Program::run() {
-    print("begin");
 
-    pause();
+    std::array<std::string, 9> slides = {
+        "begin",
+        "overview",
+        "BuTwHYtHo",
+        "prep",
+        "beginwork",
+        "solution",
+        "continue",
+        "review",
+        "credits"
+    };
 
-    print("overview");
-
-    pause();
-
-    print("BuTwHYtHo");
-
-    pause();
-
-    print("prep");
-
-    pause();
-
-    print("beginwork");
-
-    pause();
-
-    print("solution");
-
-    pause();
-
-    print("continue");
-
-    pause();
-
-    print("review");
+    for (std::string s : slides) {
+        print(s);
+        pause();
+    }
 }
 
 std::string Program::process(const std::string &source) {
